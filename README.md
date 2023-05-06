@@ -17,8 +17,8 @@ cd lxterminal
 
 your-favorite-text-editor ./src/lxterminal.c
 ```
-found 
-
+found it
+```
 /* Descriptors for popup menu items, accessed via right click on the terminal. */
 static GtkActionEntry vte_menu_items[] =
 {
@@ -41,8 +41,8 @@ static GtkActionEntry vte_menu_items[] =
     { "Tabs_MoveTabRight", NULL, N_("Move Tab _Right"), NULL, "Move Tab Right", G_CALLBACK(terminal_move_tab_right_activate_event) },
     { "CloseTab", "window-close", N_("_Close Tab"), NULL, "Close Tab", G_CALLBACK(terminal_close_tab_activate_event) }
 };
-
-and remove any string that you want
+```
+remove any string that you want
 
 and build:
 ```
