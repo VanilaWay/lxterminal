@@ -135,7 +135,6 @@ void print_setting()
     printf("Disable F10: %i\n", setting->disable_f10);
     printf("Disable Alt: %i\n", setting->disable_alt);
     printf("Disable Confirm: %i\n", setting->disable_confirm);
-    printf("Tab width: %i\n", setting->tab_width);
     printf("Geometry change: %i\n", setting->geometry_change);
     
     /* Shortcut group settings. */
@@ -151,7 +150,7 @@ void print_setting()
     printf("MOVE_TAB_LEFT_ACCEL: %s\n", setting->move_tab_left_accel);
     printf("MOVE_TAB_RIGHT_ACCEL: %s\n", setting->move_tab_right_accel);
 }
-#endif /* 0 */
+#endif
 
 Setting * get_setting()
 {
@@ -227,7 +226,6 @@ void save_setting()
     g_key_file_set_boolean(setting->keyfile, GENERAL_GROUP, DISABLE_F10, setting->disable_f10);
     g_key_file_set_boolean(setting->keyfile, GENERAL_GROUP, DISABLE_ALT, setting->disable_alt);
     g_key_file_set_boolean(setting->keyfile, GENERAL_GROUP, DISABLE_CONFIRM, setting->disable_confirm);
-    g_key_file_set_integer(setting->keyfile, GENERAL_GROUP, TAB_WIDTH, setting->tab_width);
 
     /* Shortcut group settings. */
     g_key_file_set_string(setting->keyfile, SHORTCUT_GROUP, NEW_WINDOW_ACCEL, setting->new_window_accel);
@@ -451,11 +449,6 @@ color_preset_does_not_exist:
         setting->disable_f10 = g_key_file_get_boolean(setting->keyfile, GENERAL_GROUP, DISABLE_F10, NULL);
         setting->disable_alt = g_key_file_get_boolean(setting->keyfile, GENERAL_GROUP, DISABLE_ALT, NULL);
         setting->disable_confirm = g_key_file_get_boolean(setting->keyfile, GENERAL_GROUP, DISABLE_CONFIRM, NULL);
-        g_clear_error(&error);
-        setting->tab_width = g_key_file_get_integer(setting->keyfile, GENERAL_GROUP, TAB_WIDTH, &error);
-        if (error && (error->code == G_KEY_FILE_ERROR_KEY_NOT_FOUND)) {
-            setting->tab_width = 100;
-        }
         
         /* Shortcut group settings. */
         setting->new_window_accel = g_key_file_get_string(setting->keyfile, SHORTCUT_GROUP, NEW_WINDOW_ACCEL, NULL);
